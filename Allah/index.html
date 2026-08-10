@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسماء الله الحسنى - 99 Names of Allah</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a1912;
+            --bg-card: #12291e;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --text-arabic: #ffffff;
+            --text-urdu: #e2e8f0;
+            --text-english: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.4);
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: radial-gradient(circle at 50% 0%, #173d2d 0%, #0a1912 75%);
+            color: var(--text-urdu);
+            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--accent-gold-light);
+            letter-spacing: 1px;
+            direction: ltr;
+        }
+
+        /* Audio Player Section */
+        .audio-container {
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 16px 20px;
+            border-radius: 0; /* Sharp square corners */
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .audio-title {
+            color: var(--accent-gold-light);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            direction: ltr;
+        }
+
+        .audio-container audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+            border-radius: 0; /* Sharp corners for audio player control */
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 0; /* Sharp square corners */
+            border: 1px solid var(--border-gold);
+            background: rgba(18, 41, 30, 0.8);
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Responsive Grid: 3 cards per row on Desktop */
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1280px;
+            margin: 0 auto;
+            direction: rtl; /* Flow starts from Urdu/Right side */
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 0; /* Sharp square corners */
+            padding: 24px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Square Number Badge on Right Side */
+        .number-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border-gold);
+            border-radius: 0; /* Sharp square corners */
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: ltr;
+        }
+
+        .arabic-name {
+            font-family: 'Amiri', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-arabic);
+            margin: 15px 0 10px 0;
+            line-height: 1.4;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .transliteration {
+            font-size: 0.95rem;
+            color: var(--accent-gold-light);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            direction: ltr;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: var(--border-gold);
+            margin: 10px 0 14px 0;
+        }
+
+        .urdu-meaning {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.15rem;
+            color: var(--text-urdu);
+            line-height: 2.2;
+            margin-bottom: 8px;
+        }
+
+        .english-meaning {
+            font-size: 0.88rem;
+            color: var(--text-english);
+            direction: ltr;
+            line-height: 1.4;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .names-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .names-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2.4rem;
+            }
+            .arabic-name {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>أسماء الله الحسنى</h1>
+        <p>The 99 Beautiful Names of Allah</p>
+    </div>
+
+    <!-- Audio Link / Player Option Before Search -->
+    <div class="audio-container">
+        <div class="audio-title">🎵 Asma-ul-Husna — The 99 Names (Atif Aslam)</div>
+        <audio controls preload="none">
+            <source src="Asma-ul-Husna _ The 99 Names _ Atif Aslam.mp4" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Search Input Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="تلاش کریں / Search by name or meaning..." onkeyup="filterCards()">
+    </div>
+
+    <div class="names-grid" id="namesGrid"></div>
+
+    <script>
+        const allahNames = [
+            { id: 1, arabic: "الرَّحْمَٰنُ", transliteration: "Ar-Rahmaan", urdu: "بے حد رحم کرنے والا", english: "The Most or Entirely Merciful" },
+            { id: 2, arabic: "الرَّحِيمُ", transliteration: "Ar-Raheem", urdu: "نہایت مہربان", english: "The Bestower of Mercy" },
+            { id: 3, arabic: "الْمَلِكُ", transliteration: "Al-Malik", urdu: "حقیقی بادشاہ", english: "The King and Owner of All" },
+            { id: 4, arabic: "الْقُدُّوسُ", transliteration: "Al-Quddus", urdu: "ہر عیب سے پاک", english: "The Absolutely Pure" },
+            { id: 5, arabic: "السَّلَامُ", transliteration: "As-Salam", urdu: "سلامتی دینے والا", english: "The Perfection and Giver of Peace" },
+            { id: 6, arabic: "الْمُؤْمِنُ", transliteration: "Al-Mu'min", urdu: "امن و أمان دینے والا", english: "The One Who gives security" },
+            { id: 7, arabic: "الْمُهَيْمِنُ", transliteration: "Al-Muhaymin", urdu: "پوری نگہبانی کرنے والا", english: "The Guardian, The Witness" },
+            { id: 8, arabic: "الْعَزِيزُ", transliteration: "Al-Azeez", urdu: "غالب و زبردست", english: "The All-Mighty" },
+            { id: 9, arabic: "الْجَبَّارُ", transliteration: "Al-Jabbar", urdu: "زبردست، نقصان پورا کرنے والا", english: "The Compeller, The Restorer" },
+            { id: 10, arabic: "الْمُتَكَبِّرُ", transliteration: "Al-Mutakabbir", urdu: "بڑائی والا", english: "The Supreme, The Majestic" },
+            { id: 11, arabic: "الْخَالِقُ", transliteration: "Al-Khaaliq", urdu: "پیدا کرنے والا", english: "The Creator" },
+            { id: 12, arabic: "الْبَارِئُ", transliteration: "Al-Baari'", urdu: "ٹھیک بنانے والا", english: "The Evolver, The Maker" },
+            { id: 13, arabic: "الْمُصَوِّرُ", transliteration: "Al-Musawwir", urdu: "صورت گری کرنے والا", english: "The Fashioner" },
+            { id: 14, arabic: "الْغَفَّارُ", transliteration: "Al-Ghaffar", urdu: "بہت بخشنے والا", english: "The Constant Forgiver" },
+            { id: 15, arabic: "الْقَهَّارُ", transliteration: "Al-Qahhar", urdu: "سب پر غالب", english: "The All-Subduing" },
+            { id: 16, arabic: "الْوَهَّابُ", transliteration: "Al-Wahhab", urdu: "بہت عطا کرنے والا", english: "The Supreme Bestower" },
+            { id: 17, arabic: "الرَّزَّاقُ", transliteration: "Ar-Razzaq", urdu: "بہت رزق دینے والا", english: "The Provider" },
+            { id: 18, arabic: "الْفَتَّاحُ", transliteration: "Al-Fattah", urdu: "کشادگی کرنے والا", english: "The Supreme Solver, The Opener" },
+            { id: 19, arabic: "الْعَلِيمُ", transliteration: "Al-'Aleem", urdu: "سب کچھ جاننے والا", english: "The All-Knowing" },
+            { id: 20, arabic: "الْقَابِضُ", transliteration: "Al-Qabidh", urdu: "تنگ کرنے والا", english: "The Withholder" },
+            { id: 21, arabic: "الْبَاسِطُ", transliteration: "Al-Baasit", urdu: "کشادہ کرنے والا", english: "The Extender" },
+            { id: 22, arabic: "الْخَافِضُ", transliteration: "Al-Khaafidh", urdu: "پست کرنے والا", english: "The Reducer, The Abaser" },
+            { id: 23, arabic: "الرَّافِعُ", transliteration: "Ar-Rafi'", urdu: "بلند کرنے والا", english: "The Exalter, The Elevator" },
+            { id: 24, arabic: "الْمُعِزُّ", transliteration: "Al-Mu'izz", urdu: "عزت دینے والا", english: "The Honourer, The Bestower" },
+            { id: 25, arabic: "الْمُذِلُّ", transliteration: "Al-Mudhill", urdu: "ذلیل کرنے والا", english: "The Dishonourer, The Humiliator" },
+            { id: 26, arabic: "السَّمِيعُ", transliteration: "As-Samee'", urdu: "سب کچھ سننے والا", english: "The All-Hearing" },
+            { id: 27, arabic: "الْبَصِيرُ", transliteration: "Al-Baseer", urdu: "سب کچھ دیکھنے والا", english: "The All-Seeing" },
+            { id: 28, arabic: "الْحَكَمُ", transliteration: "Al-Hakam", urdu: "فیصلہ کرنے والا", english: "The Impartial Judge" },
+            { id: 29, arabic: "الْعَدْلُ", transliteration: "Al-'Adl", urdu: "سراپا عدل و انصاف", english: "The Utterly Just" },
+            { id: 30, arabic: "اللَّطِيفُ", transliteration: "Al-Lateef", urdu: "بہت باریک بین و مہربان", english: "The Subtle One, The Gracious" },
+            { id: 31, arabic: "الْخَبِيرُ", transliteration: "Al-Khabeer", urdu: "ہر بات سے باخبر", english: "The All-Aware" },
+            { id: 32, arabic: "الْحَلِيمُ", transliteration: "Al-Haleem", urdu: "بردبار و حلم والا", english: "The Most Forbearing" },
+            { id: 33, arabic: "الْعَظِيمُ", transliteration: "Al-'Azeem", urdu: "بہت عظمت والا", english: "The Magnificent" },
+            { id: 34, arabic: "الْغَفُورُ", transliteration: "Al-Ghafoor", urdu: "بہت معاف کرنے والا", english: "The Great Forgiver" },
+            { id: 35, arabic: "الشَّكُورُ", transliteration: "Ash-Shakoor", urdu: "قدردان، جزاء دینے والا", english: "The Most Appreciative" },
+            { id: 36, arabic: "الْعَلِيُّ", transliteration: "Al-'Aliyy", urdu: "بہت بلند و برتر", english: "The Most High" },
+            { id: 37, arabic: "الْكَبِيرُ", transliteration: "Al-Kabeer", urdu: "بہت بڑا", english: "The Most Grand" },
+            { id: 38, arabic: "الْحَفِيظُ", transliteration: "Al-Hafeez", urdu: "سب کا حفاظت کرنے والا", english: "The Preserver" },
+            { id: 39, arabic: "الْمُقِيتُ", transliteration: "Al-Muqeet", urdu: "سب کو روزی و توانائی دینے والا", english: "The Sustainer" },
+            { id: 40, arabic: "الْحَسِيبُ", transliteration: "Al-Haseeb", urdu: "کفایت کرنے والا، حساب لینے والا", english: "The Reckoner" },
+            { id: 41, arabic: "الْجَلِيلُ", transliteration: "Al-Jaleel", urdu: "بزرگی و جلال والا", english: "The Majestic" },
+            { id: 42, arabic: "الْكَرِيمُ", transliteration: "Al-Kareem", urdu: "بہت کرم کرنے والا", english: "The Most Generous" },
+            { id: 43, arabic: "الرَّقِيبُ", transliteration: "Ar-Raqeeb", urdu: "نگران و دیکھنے والا", english: "The Watchful" },
+            { id: 44, arabic: "الْمُجِيبُ", transliteration: "Al-Mujeeb", urdu: "دعائیں قبول کرنے والا", english: "The Responsive" },
+            { id: 45, arabic: "الْوَاسِعُ", transliteration: "Al-Waasi'", urdu: "وسعت رکھنے والا", english: "The All-Encompassing" },
+            { id: 46, arabic: "الْحَكِيمُ", transliteration: "Al-Hakeem", urdu: "حکمت والا", english: "The All-Wise" },
+            { id: 47, arabic: "الْوَدُودُ", transliteration: "Al-Wadood", urdu: "بہت محبت کرنے والا", english: "The Most Loving" },
+            { id: 48, arabic: "الْمَجِيدُ", transliteration: "Al-Majeed", urdu: "بزرگی و شان والا", english: "The Glorious" },
+            { id: 49, arabic: "الْبَاعِثُ", transliteration: "Al-Ba'ith", urdu: "دوبارہ زندہ کرنے والا", english: "The Resurrecter" },
+            { id: 50, arabic: "الشَّهِيدُ", transliteration: "Ash-Shaheed", urdu: "حاضر و ناظر", english: "The All-and-Ever Witness" },
+            { id: 51, arabic: "الْحَقُّ", transliteration: "Al-Haqq", urdu: "سچا و قائم رہنے والا", english: "The Absolute Truth" },
+            { id: 52, arabic: "الْوَكِيلُ", transliteration: "Al-Wakeel", urdu: "کارساز", english: "The Trustee, The Disposer of Affairs" },
+            { id: 53, arabic: "الْقَوِيُّ", transliteration: "Al-Qawiyy", urdu: "بہت طاقتور", english: "The All-Strong" },
+            { id: 54, arabic: "الْمَتِينُ", transliteration: "Al-Manteen", urdu: "قوی و مضبوط", english: "The Firm, The Steadfast" },
+            { id: 55, arabic: "الْوَلِيُّ", transliteration: "Al-Waliyy", urdu: "مددگار و سرپرست", english: "The Protecting Associate" },
+            { id: 56, arabic: "الْحَمِيدُ", transliteration: "Al-Hameed", urdu: "تعریف کے قابل", english: "The Praiseworthy" },
+            { id: 57, arabic: "الْمُحْصِي", transliteration: "Al-Muhsi", urdu: "شمار کرنے والا", english: "The All-Counting" },
+            { id: 58, arabic: "الْمُبْدِئُ", transliteration: "Al-Mubdi'", urdu: "پہلی بار پیدا کرنے والا", english: "The Originator" },
+            { id: 59, arabic: "الْمُعِيدُ", transliteration: "Al-Mu'eed", urdu: "دوبارہ پیدا کرنے والا", english: "The Restorer" },
+            { id: 60, arabic: "الْمُحْيِي", transliteration: "Al-Muhyi", urdu: "زندگی دینے والا", english: "The Giver of Life" },
+            { id: 61, arabic: "الْمُمِيتُ", transliteration: "Al-Mumeet", urdu: "موت دینے والا", english: "The Bringer of Death" },
+            { id: 62, arabic: "الْحَيُّ", transliteration: "Al-Hayy", urdu: "ہمیشہ زندہ رہنے والا", english: "The Ever-Living" },
+            { id: 63, arabic: "الْقَيُّومُ", transliteration: "Al-Qayyoom", urdu: "سب کو تھامنے والا", english: "The Sustainer, The Self-Subsisting" },
+            { id: 64, arabic: "الْوَاجِدُ", transliteration: "Al-Waajid", urdu: "سب کچھ پانے والا", english: "The Perceiver, The Finder" },
+            { id: 65, arabic: "الْمَاجِدُ", transliteration: "Al-Maajid", urdu: "بزرگی والا", english: "The Illustrious, The Magnificent" },
+            { id: 66, arabic: "الْوَاحِدُ", transliteration: "Al-Waahid", urdu: "ایک و اکیلا", english: "The One" },
+            { id: 67, arabic: "الْأَحَدُ", transliteration: "Al-Ahad", urdu: "یگانہ و بے مثل", english: "The Unique, The Only One" },
+            { id: 68, arabic: "الصَّمَدُ", transliteration: "As-Samad", urdu: "بے نیاز", english: "The Eternal, Satisfier of Needs" },
+            { id: 69, arabic: "الْقَادِرُ", transliteration: "Al-Qaadir", urdu: "قدرت والا", english: "The Capable, The Powerful" },
+            { id: 70, arabic: "الْمُقْتَدِرُ", transliteration: "Al-Muqtadir", urdu: "مکمل اقتدار والا", english: "The Omnipotent" },
+            { id: 71, arabic: "الْمُقَدِّمُ", transliteration: "Al-Muqaddim", urdu: "آگے کرنے والا", english: "The Promoter, The Expediter" },
+            { id: 72, arabic: "الْمُؤَخِّرُ", transliteration: "Al-Mu'akhkhir", urdu: "پیچھے کرنے والا", english: "The Delayer, The Retarder" },
+            { id: 73, arabic: "الْأَوَّلُ", transliteration: "Al-Awwal", urdu: "سب سے پہلا", english: "The First" },
+            { id: 74, arabic: "الْآخِرُ", transliteration: "Al-Aakhir", urdu: "سب کے بعد رہنے والا", english: "The Last" },
+            { id: 75, arabic: "الظَّاهِرُ", transliteration: "Az-Zaahir", urdu: "ظاہر و عیاں", english: "The Manifest" },
+            { id: 76, arabic: "الْبَاطِنُ", transliteration: "Al-Baatin", urdu: "پوشیدہ و چھپا ہوا", english: "The Hidden" },
+            { id: 77, arabic: "الْوَالِي", transliteration: "Al-Waali", urdu: "حاکم و مالک", english: "The Governor, The Patron" },
+            { id: 78, arabic: "الْمُتَعَالِي", transliteration: "Al-Muta'ali", urdu: "بہت بلند الشان", english: "The Self Exalted" },
+            { id: 79, arabic: "الْبَرُّ", transliteration: "Al-Barr", urdu: "احسان کرنے والا", english: "The Source of All Goodness" },
+            { id: 80, arabic: "التَّوَّابُ", transliteration: "At-Tawwab", urdu: "توبہ قبول کرنے والا", english: "The Ever-Pardoning" },
+            { id: 81, arabic: "الْمُنْتَقِمُ", transliteration: "Al-Muntaqim", urdu: "انتقام لینے والا", english: "The Avenger" },
+            { id: 82, arabic: "الْعَفُوُّ", transliteration: "Al-'Afuww", urdu: "معاف کر دینے والا", english: "The Pardoner" },
+            { id: 83, arabic: "الرَّؤُوفُ", transliteration: "Ar-Ra'oof", urdu: "بہت شفقت کرنے والا", english: "The Most Kind" },
+            { id: 84, arabic: "مَالِكُ الْمُلْكِ", transliteration: "Maalik-ul-Mulk", urdu: "سلطنت کا مالک", english: "Master of the Kingdom" },
+            { id: 85, arabic: "ذُو الْجَلَالِ وَالْإِكْرَامِ", transliteration: "Zul-Jalaali wal-Ikram", urdu: "جلال اور انعام والا", english: "Possessor of Glory and Honour" },
+            { id: 86, arabic: "الْمُقْسِطُ", transliteration: "Al-Muqsit", urdu: "انصاف کرنے والا", english: "The Equitable" },
+            { id: 87, arabic: "الْجَامِعُ", transliteration: "Al-Jaami'", urdu: "جمع کرنے والا", english: "The Gatherer" },
+            { id: 88, arabic: "الْغَنِيُّ", transliteration: "Al-Ghaniyy", urdu: "خود غنی و بے نیاز", english: "The Self-Sufficient" },
+            { id: 89, arabic: "الْمُغْنِي", transliteration: "Al-Mughni", urdu: "غنی کرنے والا", english: "The Enricher" },
+            { id: 90, arabic: "الْمَانِعُ", transliteration: "Al-Mani'", urdu: "روکنے والا", english: "The Withholder" },
+            { id: 91, arabic: "الضَّارُّ", transliteration: "Adh-Dhaarr", urdu: "نقصان پہنچانے والا", english: "The Distresser" },
+            { id: 92, arabic: "النَّافِعُ", transliteration: "An-Naafi'", urdu: "نفع پہنچانے والا", english: "The Propitious, The Benefactor" },
+            { id: 93, arabic: "النُّورُ", transliteration: "An-Noor", urdu: "منور کرنے والا، نور", english: "The Light" },
+            { id: 94, arabic: "الْهَادِي", transliteration: "Al-Haadi", urdu: "ہدایت دینے والا", english: "The Guide" },
+            { id: 95, arabic: "الْبَدِيعُ", transliteration: "Al-Badee'", urdu: "بغیر مثال پیدا کرنے والا", english: "The Incomparable Originator" },
+            { id: 96, arabic: "الْبَاقِي", transliteration: "Al-Baaqi", urdu: "ہمیشہ باقی رہنے والا", english: "The Everlasting" },
+            { id: 97, arabic: "الْوَارِثُ", transliteration: "Al-Waarith", urdu: "سب کا وارث", english: "The Inheritor" },
+            { id: 98, arabic: "الرَّشِيدُ", transliteration: "Ar-Rasheed", urdu: "راست رو، ہدایت کار", english: "The Guide to the Right Path" },
+            { id: 99, arabic: "الصَّبُورُ", transliteration: "As-Saboor", urdu: "بہت صبر کرنے والا", english: "The Most Patient" }
+        ];
+
+        function renderCards(data) {
+            const grid = document.getElementById('namesGrid');
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="number-badge">${item.id}</div>
+                    <div class="arabic-name">${item.arabic}</div>
+                    <div class="transliteration">${item.transliteration}</div>
+                    <div class="divider"></div>
+                    <div class="urdu-meaning">${item.urdu}</div>
+                    <div class="english-meaning">${item.english}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const filtered = allahNames.filter(item => 
+                item.arabic.includes(query) ||
+                item.transliteration.toLowerCase().includes(query) ||
+                item.urdu.includes(query) ||
+                item.english.toLowerCase().includes(query) ||
+                item.id.toString() === query
+            );
+            renderCards(filtered);
+        }
+
+        // Initial render
+        renderCards(allahNames);
+    </script>
+</body>
+</html>
