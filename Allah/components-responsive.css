@@ -1,0 +1,244 @@
+/* ================== components-responsive.css ================== */
+/* Mobile Responsiveness for Islamic Layout */
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* ============ HEADER ============ */
+  .top-bar {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  /* Hide fullscreen on mobile - but keep it in structure */
+  #fullscreenToggle {
+    display: none;
+  }
+
+  .icon-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  /* First Row: Three Dua Texts */
+  .top-bar-first-row {
+    gap: 6px;
+  }
+
+  .top-bar-right {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .top-bar-center {
+    flex: 1;
+    text-align: center;
+  }
+
+  .top-bar-left {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .header-icons-left {
+    display: none !important;
+    /* Hide fullscreen icon container on mobile */
+  }
+
+  .dua-text {
+    padding: 0;
+  }
+
+  .arabic-calligraphy {
+    font-size: 1.1rem !important;
+  }
+
+  .right-dua .arabic-calligraphy {
+    font-size: 1rem !important;
+  }
+
+  .left-dua .arabic-calligraphy {
+    font-size: 1rem !important;
+  }
+
+  .center-dua .arabic-calligraphy {
+    font-size: 1.3rem !important;
+  }
+
+  /* Second Row: Ta'awwuz & Bismillah - Stack Vertically on Mobile */
+  .top-bar-second-row {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 4px 0;
+    padding-top: 10px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .taawwuz-box,
+  .bismillah-box {
+    padding: 8px 14px;
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .arabic-taawwuz,
+  .arabic-bismillah {
+    font-size: 0.85rem !important;
+    letter-spacing: 1px !important;
+    word-spacing: 4px !important;
+  }
+
+  .arabic-bismillah {
+    font-size: 0.9rem !important;
+    word-spacing: 5px !important;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .app-wrapper {
+    margin-top: 155px;
+    min-height: calc(100vh - 155px);
+    flex-direction: row-reverse;
+  }
+
+  .side-nav {
+    position: fixed;
+    top: 155px;
+    right: 0;
+    left: auto;
+    height: calc(100vh - 155px);
+    width: 70%;
+    max-width: 280px;
+    z-index: 1500;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-right: 2px solid var(--border-gold);
+    border-left: none;
+    sticky: not-sticky;
+  }
+
+  .side-nav:not(.hidden) {
+    transform: translateX(0);
+  }
+
+  .side-nav.hidden {
+    transform: translateX(100%);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    top: 155px;
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 155px);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1400;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .main-panel {
+    order: 1;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .top-bar {
+    padding: 6px 8px;
+  }
+
+  .arabic-calligraphy {
+    font-size: 0.9rem !important;
+  }
+
+  .right-dua .arabic-calligraphy {
+    font-size: 0.8rem !important;
+  }
+
+  .left-dua .arabic-calligraphy {
+    font-size: 0.8rem !important;
+  }
+
+  .center-dua .arabic-calligraphy {
+    font-size: 1.05rem !important;
+  }
+
+  .taawwuz-box,
+  .bismillah-box {
+    padding: 6px 10px;
+  }
+
+  .arabic-taawwuz,
+  .arabic-bismillah {
+    font-size: 0.7rem !important;
+    letter-spacing: 0.5px !important;
+    word-spacing: 2px !important;
+  }
+
+  .arabic-bismillah {
+    font-size: 0.75rem !important;
+  }
+
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .side-nav {
+    width: 75%;
+  }
+}
+
+/* Tablet (768px - 1024px) - Keep rows in one line but smaller text */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .top-bar {
+    padding: 12px 20px;
+  }
+
+  .arabic-calligraphy {
+    font-size: 1.3rem !important;
+  }
+
+  .right-dua .arabic-calligraphy {
+    font-size: 1.1rem !important;
+  }
+
+  .left-dua .arabic-calligraphy {
+    font-size: 1.1rem !important;
+  }
+
+  .center-dua .arabic-calligraphy {
+    font-size: 1.6rem !important;
+  }
+
+  .arabic-taawwuz,
+  .arabic-bismillah {
+    font-size: 1.05rem !important;
+    letter-spacing: 1.2px !important;
+    word-spacing: 5px !important;
+  }
+
+  .arabic-bismillah {
+    font-size: 1.1rem !important;
+    word-spacing: 6px !important;
+  }
+
+  .taawwuz-box,
+  .bismillah-box {
+    padding: 8px 18px;
+  }
+}

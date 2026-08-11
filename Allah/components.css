@@ -1,0 +1,374 @@
+/* ================== components.css ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --islamic-green: #1a4d2e;
+  --islamic-gold: #c9a84c;
+  --islamic-dark: #0d2818;
+  --islamic-light: #f5f0e8;
+  --border-gold: rgba(201, 168, 76, 0.4);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+  background: var(--islamic-dark);
+  color: #e2e8f0;
+  direction: rtl;
+}
+
+/* ========== HEADER ========== */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 100%);
+  border-bottom: 2px solid var(--border-gold);
+  padding: 14px 28px;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* First Row: Three Dua Texts with Icons */
+.top-bar-first-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.top-bar-center {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* Header Icons - Right Side */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Header Icons - Left Side (Fullscreen only) */
+.header-icons-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-gold);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--islamic-gold);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: var(--islamic-gold);
+  color: var(--islamic-dark);
+  border-color: var(--islamic-gold);
+  transform: scale(1.05);
+}
+
+/* Dua Texts */
+.dua-text {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arabic-calligraphy {
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--islamic-gold);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+  letter-spacing: 1px;
+}
+
+.right-dua .arabic-calligraphy {
+  font-size: 1.4rem;
+}
+
+.left-dua .arabic-calligraphy {
+  font-size: 1.4rem;
+}
+
+.center-dua .arabic-calligraphy {
+  font-size: 2rem;
+  background: linear-gradient(180deg, #f3e5ab, var(--islamic-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Second Row: Ta'awwuz & Bismillah - Full Width Layout */
+.top-bar-second-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: nowrap;
+  padding: 0;
+  border-top: 1px solid var(--border-gold);
+  padding-top: 12px;
+  width: 100%;
+}
+
+.taawwuz-box,
+.bismillah-box {
+  border: 1px solid var(--border-gold);
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+  /* Prevents overflow */
+  word-break: keep-all;
+}
+
+.taawwuz-box:hover,
+.bismillah-box:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: var(--islamic-gold);
+}
+
+.arabic-taawwuz,
+.arabic-bismillah {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: #d4d4d4;
+  letter-spacing: 1.5px;
+  line-height: 1.6;
+  word-spacing: 6px;
+  /* Increased spacing between words */
+}
+
+.arabic-bismillah {
+  color: var(--islamic-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  word-spacing: 8px;
+  /* More spacing for Bismillah */
+}
+
+/* ========== SIDEBAR (Right Side RTL) ========== */
+.app-wrapper {
+  display: flex;
+  margin-top: 160px;
+  min-height: calc(100vh - 160px);
+  flex-direction: row-reverse;
+}
+
+.side-nav {
+  width: 280px;
+  background: linear-gradient(180deg, #0d2818 0%, #12291e 100%);
+  border-right: 2px solid var(--border-gold);
+  padding: 20px 0;
+  position: sticky;
+  top: 160px;
+  height: calc(100vh - 160px);
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  order: 2;
+  /* RTL: sidebar on right */
+}
+
+.side-nav.hidden {
+  transform: translateX(100%);
+  width: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.nav-menu {
+  list-style: none;
+  flex: 1;
+  padding: 0 10px;
+}
+
+.nav-divider {
+  height: 1px;
+  background: var(--border-gold);
+  margin: 12px 16px;
+  opacity: 0.3;
+}
+
+.section-header {
+  padding: 0 18px 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--islamic-gold);
+  letter-spacing: 0.5px;
+  font-family: 'Amiri', serif;
+  text-align: right;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  color: #c8d6c0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-right: 3px solid transparent;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(201, 168, 76, 0.1);
+  color: var(--islamic-gold);
+  border-right-color: var(--islamic-gold);
+}
+
+.nav-link i {
+  width: 20px;
+  color: var(--islamic-gold);
+  font-size: 0.9rem;
+}
+
+.nav-link span {
+  flex: 1;
+}
+
+/* Sidebar Dropdowns */
+.dropdown-nav {
+  position: relative;
+}
+
+.dropdown-toggle {
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  transition: transform 0.3s;
+  margin-right: auto;
+  color: var(--islamic-gold);
+}
+
+.dropdown-nav.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu-side {
+  list-style: none;
+  background: rgba(255, 255, 255, 0.02);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  margin-right: 24px;
+  border-right: 2px solid var(--border-gold);
+}
+
+.dropdown-nav.active .dropdown-menu-side {
+  max-height: 300px;
+  transition: max-height 0.5s ease-in;
+}
+
+.dropdown-item-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  color: #b0c0a8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: 'Noto Nastaliq Urdu', 'Amiri', serif;
+  text-align: right;
+  transition: all 0.3s;
+}
+
+.dropdown-item-side:hover {
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--islamic-gold);
+}
+
+.dropdown-item-side i {
+  width: 18px;
+  font-size: 0.85rem;
+  color: var(--islamic-gold);
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 18px 20px;
+  border-top: 1px solid var(--border-gold);
+  margin-top: auto;
+}
+
+.developed-by {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.developed-by .label {
+  display: block;
+  font-weight: 500;
+  color: var(--islamic-gold);
+}
+
+.developed-by .name {
+  display: block;
+  font-weight: 700;
+  color: #f3e5ab;
+  margin-top: 3px;
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-panel {
+  flex: 1;
+  padding: 40px 32px;
+  overflow-y: auto;
+  order: 1;
+}

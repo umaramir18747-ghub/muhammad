@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سورۃ الفاتحہ - ترجمہ اردو</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf6ef;
+            --bg-warm: #f5ede0;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --gold-dark: #8b6508;
+            --green-deep: #1a4a3a;
+            --green-mid: #2d6a4f;
+            --text-dark: #2c1810;
+            --text-arabic: #1a1a1a;
+            --text-urdu: #3e2723;
+            --border-gold: #c9a84c;
+            --cream: #fdf8ef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8e0d0 0%, #f0e8d8 50%, #e5ddd0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+
+        .frame-outer {
+            position: relative;
+            max-width: 820px;
+            width: 100%;
+            background: var(--bg);
+            border-radius: 12px;
+            box-shadow:
+                0 4px 30px rgba(0,0,0,0.12),
+                0 1px 6px rgba(0,0,0,0.08),
+                inset 0 0 60px rgba(184,134,11,0.04);
+            overflow: hidden;
+        }
+
+        /* === خارجی سنہری بارڈر === */
+        .gold-border {
+            position: absolute;
+            inset: 8px;
+            border: 2px solid var(--border-gold);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .gold-border::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(201,168,76,0.4);
+            border-radius: 6px;
+        }
+
+        /* === سائیڈ ڈیزائن — دائیں === */
+        .side-design-right {
+            position: absolute;
+            top: 30px;
+            right: 18px;
+            bottom: 30px;
+            width: 52px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* === سائیڈ ڈیزائن — بائیں === */
+        .side-design-left {
+            position: absolute;
+            top: 30px;
+            left: 18px;
+            bottom: 30px;
+            width: 52px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .side-design-right svg,
+        .side-design-left svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* === اندرونی مواد === */
+        .content {
+            position: relative;
+            z-index: 3;
+            padding: 48px 90px 44px;
+        }
+
+        /* === عنوان سیکشن === */
+        .header-section {
+            text-align: center;
+            margin-bottom: 8px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(184,134,11,0.25);
+            position: relative;
+        }
+        .header-section::after {
+            content: '﷽';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            padding: 0 20px;
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            color: var(--gold);
+        }
+
+        .surah-name-ar {
+            font-family: 'Amiri', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.6;
+        }
+        .surah-name-ur {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 20px;
+            color: var(--gold-dark);
+            font-weight: 700;
+            line-height: 2.2;
+        }
+        .surah-info {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            color: #8a7a6a;
+            line-height: 2;
+            margin-top: 2px;
+        }
+
+        /* === بسم اللہ === */
+        .bismillah {
+            text-align: center;
+            margin: 36px 0 28px;
+            font-family: 'Amiri', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            line-height: 1.8;
+            position: relative;
+        }
+        .bismillah-urdu {
+            text-align: center;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 16px;
+            color: var(--text-urdu);
+            line-height: 2.2;
+            margin-top: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* === آیات === */
+        .ayah-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .ayah-row {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            padding: 10px 8px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+        .ayah-row:hover {
+            background: rgba(184,134,11,0.06);
+        }
+
+        .ayah-number {
+            font-family: 'Amiri', serif;
+            font-size: 14px;
+            color: var(--gold);
+            min-width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(184,134,11,0.35);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .ayah-text-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-arabic);
+            line-height: 2;
+            flex: 1;
+            direction: rtl;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .ayah-text-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 16px;
+            color: var(--text-urdu);
+            line-height: 2.2;
+            direction: rtl;
+            text-align: center;
+            flex: 1;
+            padding-right: 0;
+            margin-top: -2px;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 4px 0;
+            color: var(--border-gold);
+            font-size: 14px;
+            opacity: 0.5;
+        }
+
+        /* === فوٹر === */
+        .footer-section {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(184,134,11,0.2);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 13px;
+            color: #9a8a7a;
+            line-height: 2;
+        }
+
+        /* === کونے کے ڈیزائن === */
+        .corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            z-index: 4;
+            pointer-events: none;
+        }
+        .corner-tl { top: 14px; left: 14px; }
+        .corner-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+        .corner-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+        .corner-br { bottom: 14px; right: 14px; transform: scale(-1,-1); }
+
+        /* === ریسپانسو === */
+        @media (max-width: 700px) {
+            .content {
+                padding: 36px 24px 32px;
+            }
+            .side-design-right,
+            .side-design-left {
+                width: 30px;
+            }
+            .surah-name-ar { font-size: 28px; }
+            .surah-name-ur { font-size: 17px; }
+            .bismillah { font-size: 26px; }
+            .bismillah-urdu { font-size: 14px; }
+            .ayah-text-arabic { font-size: 22px; }
+            .ayah-text-urdu { font-size: 14px; }
+            .ayah-row { gap: 10px; padding: 8px 4px; }
+            .corner { width: 40px; height: 40px; }
+        }
+
+        @media (max-width: 440px) {
+            body { padding: 8px; }
+            .content { padding: 28px 16px 24px; }
+            .side-design-right, .side-design-left { display: none; }
+            .gold-border { inset: 5px; }
+            .ayah-text-arabic { font-size: 20px; }
+            .ayah-text-urdu { font-size: 13px; }
+            .surah-name-ar { font-size: 24px; }
+            .bismillah { font-size: 22px; }
+        }
+
+        /* === پرنٹ === */
+        @media print {
+            body { background: white; padding: 0; }
+            .frame-outer { box-shadow: none; border: 1px solid #ccc; }
+            .ayah-row:hover { background: none; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .ayah-row {
+            animation: fadeInUp 0.5s ease both;
+        }
+        .ayah-row:nth-child(1) { animation-delay: 0.05s; }
+        .ayah-row:nth-child(2) { animation-delay: 0.1s; }
+        .ayah-row:nth-child(3) { animation-delay: 0.15s; }
+        .ayah-row:nth-child(4) { animation-delay: 0.2s; }
+        .ayah-row:nth-child(5) { animation-delay: 0.25s; }
+        .ayah-row:nth-child(6) { animation-delay: 0.3s; }
+        .ayah-row:nth-child(7) { animation-delay: 0.35s; }
+    </style>
+</head>
+<body>
+
+<div class="frame-outer">
+    <!-- سنہری بارڈر -->
+    <div class="gold-border"></div>
+
+    <!-- کونے کے ڈیزائن -->
+    <div class="corner corner-tl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+            <path d="M14 4 Q14 14 4 14" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+    <div class="corner corner-tr">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+            <path d="M14 4 Q14 14 4 14" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+    <div class="corner corner-bl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+        </svg>
+    </div>
+    <div class="corner corner-br">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+        </svg>
+    </div>
+
+    <!-- دائیں سائیڈ ڈیزائن -->
+    <div class="side-design-right">
+        <svg viewBox="0 0 52 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- مرکزی عمودی لائن -->
+            <line x1="26" y1="0" x2="26" y2="800" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+            <!-- پھولوں کی ترتیب -->
+            <g opacity="0.35">
+                <circle cx="26" cy="40" r="8" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+                <circle cx="26" cy="40" r="3" fill="#c9a84c" opacity="0.3"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(0,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(60,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(120,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(180,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(240,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(300,26,40)"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,100)">
+                <circle cx="26" cy="40" r="10" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="40" r="4" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 30 Q30 36 26 40 Q22 36 26 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M36 40 Q30 44 26 40 Q30 36 36 40" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 50 Q22 44 26 40 Q30 44 26 50" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M16 40 Q22 36 26 40 Q22 44 16 40" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+            </g>
+            <!-- موجی پیٹرن -->
+            <path d="M10 200 Q18 195 26 200 Q34 205 42 200" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 210 Q18 205 26 210 Q34 215 42 210" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <!-- مزید پھول -->
+            <g opacity="0.3" transform="translate(0,260)">
+                <circle cx="26" cy="30" r="7" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="2.5" fill="#c9a84c" opacity="0.2"/>
+                <ellipse cx="26" cy="23" rx="2" ry="4.5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="23" rx="2" ry="4.5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(72,26,30)"/>
+                <ellipse cx="26" cy="23" rx="2" ry="4.5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(144,26,30)"/>
+                <ellipse cx="26" cy="23" rx="2" ry="4.5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(216,26,30)"/>
+                <ellipse cx="26" cy="23" rx="2" ry="4.5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(288,26,30)"/>
+            </g>
+            <!-- مثلثی ڈیزائن -->
+            <g opacity="0.25" transform="translate(0,350)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,420)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="5" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="19.7" y1="23.7" x2="32.3" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="32.3" y1="23.7" x2="19.7" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,500)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(300,26,30)"/>
+            </g>
+            <path d="M10 590 Q18 585 26 590 Q34 595 42 590" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 600 Q18 595 26 600 Q34 605 42 600" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,640)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,720)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- بائیں سائیڈ ڈیزائن -->
+    <div class="side-design-left">
+        <svg viewBox="0 0 52 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="26" y1="0" x2="26" y2="800" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+            <g opacity="0.3" transform="translate(0,40)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="5" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="19.7" y1="23.7" x2="32.3" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="32.3" y1="23.7" x2="19.7" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,140)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(300,26,30)"/>
+            </g>
+            <path d="M10 240 Q18 235 26 240 Q34 245 42 240" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 250 Q18 245 26 250 Q34 255 42 250" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,290)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.35" transform="translate(0,370)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.3"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(300,26,30)"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,460)">
+                <circle cx="26" cy="30" r="10" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="4" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 20 Q30 26 26 30 Q22 26 26 20" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M36 30 Q30 34 26 30 Q30 26 36 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 40 Q22 34 26 30 Q30 34 26 40" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M16 30 Q22 26 26 30 Q22 34 16 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+            </g>
+            <path d="M10 540 Q18 535 26 540 Q34 545 42 540" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 550 Q18 545 26 550 Q34 555 42 550" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,590)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,670)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,730)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- === اصل مواد === -->
+    <div class="content">
+
+        <!-- عنوان -->
+        <div class="header-section">
+            
+            <div class="surah-name-ur">سورۃ الفاتحہ</div>
+            
+        </div>
+
+        <!-- بسم اللہ -->
+        
+        <div class="bismillah-urdu">شروع اللہ کے نام سے جو بڑا مہربان نہایت رحم والا ہے</div>
+
+        <!-- آیات -->
+        <div class="ayah-container">
+
+            <!-- آیت ۱ -->
+            <div class="ayah-row">
+                <span class="ayah-number">١</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِيْنَ ۙ</div>
+                    <div class="ayah-text-urdu">سب تعریفیں اللہ کے لیے ہیں جو سارے جہانوں کا پالنے والا ہے</div>
+                </div>
+            </div>
+
+            <div class="separator">✦</div>
+
+            <!-- آیت ۲ -->
+            <div class="ayah-row">
+                <span class="ayah-number">٢</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">الرَّحْمٰنِ الرَّحِيْمِ ۙ</div>
+                    <div class="ayah-text-urdu">بڑا مہربان نہایت رحم والا</div>
+                </div>
+            </div>
+
+            <div class="separator">✦</div>
+
+            <!-- آیت ۳ -->
+            <div class="ayah-row">
+                <span class="ayah-number">٣</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">مَالِكِ يَوْمِ الدِّيْنِ ۙ</div>
+                    <div class="ayah-text-urdu">روزِ جزا کا مالک</div>
+                </div>
+            </div>
+
+            <div class="separator">✦</div>
+
+            <!-- آیت ۴ -->
+            <div class="ayah-row">
+                <span class="ayah-number">٤</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُ ۙ</div>
+                    <div class="ayah-text-urdu">ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد چاہتے ہیں</div>
+                </div>
+            </div>
+
+            <div class="separator">✦</div>
+
+            <!-- آیت ۵ -->
+            <div class="ayah-row">
+                <span class="ayah-number">٥</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۙ</div>
+                    <div class="ayah-text-urdu">ہمیں سیدھا راستہ دکھا</div>
+                </div>
+            </div>
+
+            <div class="separator">✦</div>
+
+            <!-- آیت ۶ -->
+            <div class="ayah-row">
+                <span class="ayah-number">٦</span>
+                <div style="flex:1; direction:rtl;">
+                    <div class="ayah-text-arabic">صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ ۙ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۟</div>
+                    <div class="ayah-text-urdu">ان لوگوں کا راستہ جن پر تو نے انعام کیا نہ ان کا راستہ جن پر غضب ہوا اور نہ گمراہوں کا</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- فوٹر -->
+        <div class="footer-section">
+             آمین ثم آمین
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

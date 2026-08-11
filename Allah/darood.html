@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درودِ ابراہیمی - ترجمہ اردو</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf6ef;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --gold-dark: #8b6508;
+            --green-deep: #1a4a3a;
+            --text-dark: #2c1810;
+            --text-arabic: #1a1a1a;
+            --text-urdu: #3e2723;
+            --border-gold: #c9a84c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8e0d0 0%, #f0e8d8 50%, #e5ddd0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+
+        .frame-outer {
+            position: relative;
+            max-width: 820px;
+            width: 100%;
+            background: var(--bg);
+            border-radius: 12px;
+            box-shadow:
+                0 4px 30px rgba(0,0,0,0.12),
+                0 1px 6px rgba(0,0,0,0.08),
+                inset 0 0 60px rgba(184,134,11,0.04);
+            overflow: hidden;
+        }
+
+        .gold-border {
+            position: absolute;
+            inset: 8px;
+            border: 2px solid var(--border-gold);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .gold-border::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(201,168,76,0.4);
+            border-radius: 6px;
+        }
+
+        .side-design-right {
+            position: absolute;
+            top: 30px;
+            right: 18px;
+            bottom: 30px;
+            width: 52px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .side-design-left {
+            position: absolute;
+            top: 30px;
+            left: 18px;
+            bottom: 30px;
+            width: 52px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .side-design-right svg,
+        .side-design-left svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            position: relative;
+            z-index: 3;
+            padding: 48px 90px 44px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 8px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(184,134,11,0.25);
+            position: relative;
+        }
+        .header-section::after {
+            content: '﷽';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            padding: 0 20px;
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            color: var(--gold);
+        }
+
+        .dua-name-ar {
+            font-family: 'Amiri', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.6;
+        }
+        .dua-name-ur {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 20px;
+            color: var(--gold-dark);
+            font-weight: 700;
+            line-height: 2.2;
+        }
+        .dua-info {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            color: #8a7a6a;
+            line-height: 2;
+            margin-top: 2px;
+        }
+
+        /* === حصہ عنوان === */
+        .part-label {
+            text-align: center;
+            margin: 28px 0 14px;
+            padding: 6px 28px;
+            border: 1px solid rgba(184,134,11,0.3);
+            border-radius: 20px;
+            display: inline-block;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            color: var(--gold-dark);
+            background: rgba(184,134,11,0.05);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .part-label-wrapper {
+            text-align: center;
+        }
+
+        /* === عربی متن بلاک === */
+        .arabic-block {
+            text-align: center;
+            margin: 16px 0 6px;
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-arabic);
+            line-height: 2.2;
+            direction: rtl;
+            letter-spacing: 0.5px;
+        }
+
+        /* === اردو ترجمہ === */
+        .urdu-block {
+            text-align: center;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 16px;
+            color: var(--text-urdu);
+            line-height: 2.4;
+            direction: rtl;
+            margin: 4px 0 8px;
+            padding: 0 20px;
+        }
+
+        /* === فاصلہ === */
+        .divider-ornament {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            height: 20px;
+        }
+        .divider-ornament::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+        }
+        .divider-ornament span {
+            position: relative;
+            background: var(--bg);
+            padding: 0 16px;
+            color: var(--border-gold);
+            font-size: 16px;
+        }
+
+        /* === حوالہ سیکشن === */
+        .reference-box {
+            margin-top: 24px;
+            padding: 14px 20px;
+            background: rgba(184,134,11,0.04);
+            border: 1px solid rgba(184,134,11,0.15);
+            border-radius: 8px;
+            direction: rtl;
+        }
+        .reference-title {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            margin-bottom: 6px;
+            line-height: 2;
+        }
+        .reference-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            color: #6a5a4a;
+            line-height: 2.2;
+        }
+
+        /* === فوٹر === */
+        .footer-section {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(184,134,11,0.2);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 13px;
+            color: #9a8a7a;
+            line-height: 2;
+        }
+
+        /* === کونے === */
+        .corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            z-index: 4;
+            pointer-events: none;
+        }
+        .corner-tl { top: 14px; left: 14px; }
+        .corner-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+        .corner-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+        .corner-br { bottom: 14px; right: 14px; transform: scale(-1,-1); }
+
+        @media (max-width: 700px) {
+            .content { padding: 36px 24px 32px; }
+            .side-design-right, .side-design-left { width: 30px; }
+            .dua-name-ar { font-size: 26px; }
+            .dua-name-ur { font-size: 17px; }
+            .arabic-block { font-size: 22px; }
+            .urdu-block { font-size: 14px; }
+            .corner { width: 40px; height: 40px; }
+        }
+
+        @media (max-width: 440px) {
+            body { padding: 8px; }
+            .content { padding: 28px 16px 24px; }
+            .side-design-right, .side-design-left { display: none; }
+            .gold-border { inset: 5px; }
+            .arabic-block { font-size: 20px; }
+            .urdu-block { font-size: 13px; }
+            .dua-name-ar { font-size: 22px; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .frame-outer { box-shadow: none; border: 1px solid #ccc; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeInUp 0.6s ease both;
+        }
+        .fade-in-d1 { animation-delay: 0.1s; }
+        .fade-in-d2 { animation-delay: 0.25s; }
+        .fade-in-d3 { animation-delay: 0.4s; }
+        .fade-in-d4 { animation-delay: 0.55s; }
+        .fade-in-d5 { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+
+<div class="frame-outer">
+    <div class="gold-border"></div>
+
+    <!-- کونے -->
+    <div class="corner corner-tl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+            <path d="M14 4 Q14 14 4 14" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+    <div class="corner corner-tr">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+            <path d="M14 4 Q14 14 4 14" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+    <div class="corner corner-bl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+        </svg>
+    </div>
+    <div class="corner corner-br">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 30 Q4 4 30 4 Z" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+            <path d="M8 8 L8 24 Q8 8 24 8 Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.6"/>
+            <circle cx="10" cy="10" r="2" fill="#c9a84c" opacity="0.7"/>
+        </svg>
+    </div>
+
+    <!-- دائیں سائیڈ ڈیزائن -->
+    <div class="side-design-right">
+        <svg viewBox="0 0 52 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="26" y1="0" x2="26" y2="700" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+            <g opacity="0.35">
+                <circle cx="26" cy="40" r="8" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+                <circle cx="26" cy="40" r="3" fill="#c9a84c" opacity="0.3"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(0,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(60,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(120,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(180,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(240,26,40)"/>
+                <ellipse cx="26" cy="32" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(300,26,40)"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,100)">
+                <circle cx="26" cy="30" r="10" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="4" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 20 Q30 26 26 30 Q22 26 26 20" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M36 30 Q30 34 26 30 Q30 26 36 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 40 Q22 34 26 30 Q30 34 26 40" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M16 30 Q22 26 26 30 Q22 34 16 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+            </g>
+            <path d="M10 190 Q18 185 26 190 Q34 195 42 190" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 200 Q18 195 26 200 Q34 205 42 200" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,240)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.35" transform="translate(0,320)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.3"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(300,26,30)"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,410)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="5" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="19.7" y1="23.7" x2="32.3" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="32.3" y1="23.7" x2="19.7" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <path d="M10 490 Q18 485 26 490 Q34 495 42 490" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 500 Q18 495 26 500 Q34 505 42 500" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.25" transform="translate(0,540)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(72,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(144,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(216,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(288,26,30)"/>
+            </g>
+            <g opacity="0.3" transform="translate(0,620)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- بائیں سائیڈ ڈیزائن -->
+    <div class="side-design-left">
+        <svg viewBox="0 0 52 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="26" y1="0" x2="26" y2="700" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+            <g opacity="0.3" transform="translate(0,40)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="5" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="19.7" y1="23.7" x2="32.3" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="32.3" y1="23.7" x2="19.7" y2="36.3" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,130)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.4" transform="rotate(300,26,30)"/>
+            </g>
+            <path d="M10 220 Q18 215 26 220 Q34 225 42 220" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 230 Q18 225 26 230 Q34 235 42 230" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,270)">
+                <polygon points="26,10 36,30 16,30" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <polygon points="26,16 32,28 20,28" fill="none" stroke="#c9a84c" stroke-width="0.4"/>
+                <circle cx="26" cy="24" r="2" fill="#c9a84c" opacity="0.3"/>
+            </g>
+            <g opacity="0.35" transform="translate(0,350)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.7"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.3"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(0,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(60,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(120,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(180,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(240,26,30)"/>
+                <ellipse cx="26" cy="22" rx="2.5" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.5" transform="rotate(300,26,30)"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,440)">
+                <circle cx="26" cy="30" r="10" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="4" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 20 Q30 26 26 30 Q22 26 26 20" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M36 30 Q30 34 26 30 Q30 26 36 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M26 40 Q22 34 26 30 Q30 34 26 40" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+                <path d="M16 30 Q22 26 26 30 Q22 34 16 30" fill="none" stroke="#c9a84c" stroke-width="0.5"/>
+            </g>
+            <path d="M10 520 Q18 515 26 520 Q34 525 42 520" fill="none" stroke="#c9a84c" stroke-width="0.6" opacity="0.3"/>
+            <path d="M10 530 Q18 525 26 530 Q34 535 42 530" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <g opacity="0.3" transform="translate(0,570)">
+                <circle cx="26" cy="30" r="9" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="1.5" fill="#c9a84c" opacity="0.4"/>
+                <line x1="26" y1="21" x2="26" y2="39" stroke="#c9a84c" stroke-width="0.3"/>
+                <line x1="17" y1="30" x2="35" y2="30" stroke="#c9a84c" stroke-width="0.3"/>
+            </g>
+            <g opacity="0.25" transform="translate(0,640)">
+                <circle cx="26" cy="30" r="8" fill="none" stroke="#c9a84c" stroke-width="0.6"/>
+                <circle cx="26" cy="30" r="3" fill="#c9a84c" opacity="0.2"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- === اصل مواد === -->
+    <div class="content">
+
+        <!-- عنوان -->
+        <div class="header-section fade-in">
+           
+            <div class="dua-name-ur">درودِ ابراہیمی</div>
+            
+        </div>
+
+        <!-- حصہ اول: صلٰوة -->
+        <div class="part-label-wrapper fade-in fade-in-d1">
+            <span class="part-label">حصہ اول — صلٰوة</span>
+        </div>
+
+        <div class="arabic-block fade-in fade-in-d2">
+            اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيْمَ وَعَلَىٰ آلِ إِبْرَاهِيْمَ إِنَّكَ حَمِيْدٌ مَّجِيْدٌ
+        </div>
+
+        <div class="urdu-block fade-in fade-in-d2">
+            اے اللہ! محمد ﷺ پر اور محمد ﷺ کی آل پر رحمت نازل فرما، جیسا کہ تو نے ابراہیم علیہ السلام پر اور ابراہیم علیہ السلام کی آل پر رحمت نازل فرمائی تھی، بے شک تو تعریف والا بزرگوaar ہے
+        </div>
+
+        <!-- فاصلہ -->
+        <div class="divider-ornament fade-in fade-in-d3">
+            <span>﴿ ❖ ﴾</span>
+        </div>
+
+        <!-- حصہ دوم: برکت -->
+        <div class="part-label-wrapper fade-in fade-in-d3">
+            <span class="part-label">حصہ دوم — برکت</span>
+        </div>
+
+        <div class="arabic-block fade-in fade-in-d4">
+            اَللّٰهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيْمَ وَعَلَىٰ آلِ إِبْرَاهِيْمَ إِنَّكَ حَمِيْدٌ مَّجِيْدٌ
+        </div>
+
+        <div class="urdu-block fade-in fade-in-d4">
+            اے اللہ! محمد ﷺ پر اور محمد ﷺ کی آل پر برکت نازل فرما، جیسا کہ تو نے ابراہیم علیہ السلام پر اور ابراہیم علیہ السلام کی آل پر برکت نازل فرمائی تھی، بے شک تو تعریف والا بزرگ ہے
+        </div>
+
+        <!-- فوٹر -->
+        <div class="footer-section fade-in fade-in-d5">
+            اللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ آلِ مُحَمَّدٍ
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
