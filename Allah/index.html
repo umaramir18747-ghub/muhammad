@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أسماء الله الحسنى - 99 Names of Allah</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="components-responsive.css">
+    
     <style>
+        /* Page-specific styles */
         :root {
             --bg-primary: #0a1912;
             --bg-card: #12291e;
@@ -34,9 +43,38 @@
             color: var(--text-urdu);
             font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
             min-height: 100vh;
-            padding: 40px 20px;
         }
 
+        /* Header placeholder adjustment */
+        #header-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .app-wrapper {
+            display: flex;
+            margin-top: 140px;
+            min-height: calc(100vh - 140px);
+            flex-direction: row-reverse;
+        }
+
+        /* Sidebar placeholder - right side */
+        #sidebar-placeholder {
+            order: 2;
+            flex-shrink: 0;
+        }
+
+        .main-panel {
+            flex: 1;
+            padding: 30px 32px 40px 32px;
+            overflow-y: auto;
+            order: 1;
+        }
+
+        /* Content Styles */
         .header {
             text-align: center;
             margin-bottom: 30px;
@@ -57,14 +95,13 @@
             direction: ltr;
         }
 
-        /* Audio Player Section */
         .audio-container {
             max-width: 500px;
             margin: 0 auto 20px auto;
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
             padding: 16px 20px;
-            border-radius: 0; /* Sharp square corners */
+            border-radius: 0;
             text-align: center;
             box-shadow: var(--shadow-card);
         }
@@ -81,7 +118,7 @@
             width: 100%;
             height: 40px;
             outline: none;
-            border-radius: 0; /* Sharp corners for audio player control */
+            border-radius: 0;
         }
 
         .search-container {
@@ -93,7 +130,7 @@
         .search-container input {
             width: 100%;
             padding: 14px 20px;
-            border-radius: 0; /* Sharp square corners */
+            border-radius: 0;
             border: 1px solid var(--border-gold);
             background: rgba(18, 41, 30, 0.8);
             color: #fff;
@@ -109,20 +146,24 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
-        /* Responsive Grid: 3 cards per row on Desktop */
+        .search-container input::placeholder {
+            color: #94a3b8;
+            direction: ltr;
+        }
+
         .names-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             max-width: 1280px;
             margin: 0 auto;
-            direction: rtl; /* Flow starts from Urdu/Right side */
+            direction: rtl;
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
-            border-radius: 0; /* Sharp square corners */
+            border-radius: 0;
             padding: 24px 20px;
             position: relative;
             display: flex;
@@ -157,7 +198,6 @@
             opacity: 1;
         }
 
-        /* Square Number Badge on Right Side */
         .number-badge {
             position: absolute;
             top: 15px;
@@ -166,7 +206,7 @@
             height: 36px;
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid var(--border-gold);
-            border-radius: 0; /* Sharp square corners */
+            border-radius: 0;
             color: var(--accent-gold);
             font-size: 0.85rem;
             font-weight: 600;
@@ -225,43 +265,107 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .app-wrapper {
+                margin-top: 110px;
+                min-height: calc(100vh - 110px);
+            }
+            
+            .main-panel {
+                padding: 20px 16px 30px 16px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
         @media (max-width: 640px) {
             .names-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
+            
             .header h1 {
-                font-size: 2.4rem;
+                font-size: 1.8rem;
             }
+            
             .arabic-name {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            
+            .main-panel {
+                padding: 16px 12px 20px 12px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>أسماء الله الحسنى</h1>
-        <p>The 99 Beautiful Names of Allah</p>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <div class="app-wrapper">
+        <!-- Sidebar Placeholder -->
+        <div id="sidebar-placeholder"></div>
+
+        <!-- Main Content -->
+        <main class="main-panel">
+            <div class="header">
+                <h1>         -         </h1>
+                <h1>أسماء الله الحسنى</h1>
+                <p>The 99 Beautiful Names of Allah</p>
+            </div>
+
+            <div class="audio-container">
+                <div class="audio-title">🎵 Asma-ul-Husna — The 99 Names</div>
+                <audio controls preload="none">
+                    <source src="Asma-ul-Husna _ The 99 Names _ Atif Aslam.mp4" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="تلاش کریں / Search by name or meaning..." onkeyup="filterCards()">
+            </div>
+
+            <div class="names-grid" id="namesGrid"></div>
+        </main>
     </div>
 
-    <!-- Audio Link / Player Option Before Search -->
-    <div class="audio-container">
-        <div class="audio-title">🎵 Asma-ul-Husna — The 99 Names (Atif Aslam)</div>
-        <audio controls preload="none">
-            <source src="Asma-ul-Husna _ The 99 Names _ Atif Aslam.mp4" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <!-- Search Input Bar -->
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="تلاش کریں / Search by name or meaning..." onkeyup="filterCards()">
-    </div>
-
-    <div class="names-grid" id="namesGrid"></div>
-
+    <script src="components.js"></script>
     <script>
+        // Load Header and Sidebar
+        function loadComponents() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error('Error loading header:', err));
+
+            fetch('sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sidebar-placeholder').innerHTML = data;
+                })
+                .catch(err => console.error('Error loading sidebar:', err));
+        }
+
+        // Initialize everything
+        window.onload = function() {
+            loadComponents();
+            
+            setTimeout(() => {
+                if (typeof window.initHeaderAndSidebar === 'function') {
+                    window.initHeaderAndSidebar();
+                }
+            }, 400);
+
+            renderCards(allahNames);
+        };
+
+        // ===== 99 Names Data =====
         const allahNames = [
             { id: 1, arabic: "الرَّحْمَٰنُ", transliteration: "Ar-Rahmaan", urdu: "بے حد رحم کرنے والا", english: "The Most or Entirely Merciful" },
             { id: 2, arabic: "الرَّحِيمُ", transliteration: "Ar-Raheem", urdu: "نہایت مہربان", english: "The Bestower of Mercy" },
@@ -394,9 +498,6 @@
             );
             renderCards(filtered);
         }
-
-        // Initial render
-        renderCards(allahNames);
     </script>
 </body>
 </html>
